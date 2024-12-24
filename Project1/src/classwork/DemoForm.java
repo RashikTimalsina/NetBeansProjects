@@ -1,25 +1,23 @@
-
 package classwork;
+
 import java.sql.*;
 import javax.swing.JOptionPane;
 
-
 public class DemoForm extends javax.swing.JFrame {
 
-    Connection conn=null;
-    ResultSet rs=null;
-    PreparedStatement pst=null;
-    Statement stmt=null;
+    Connection conn = null;
+    ResultSet rs = null;
+    PreparedStatement pst = null;
+    Statement stmt = null;
     String gender;
-       
-          
+
     public DemoForm() {
         initComponents();
     }
-    
-    
+
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
@@ -48,7 +46,8 @@ public class DemoForm extends javax.swing.JFrame {
 
         jLabel3.setText("Country");
 
-        cmbCountry.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbCountry.setModel(
+                new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnSubmit.setText("Submit");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
@@ -60,117 +59,124 @@ public class DemoForm extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(chkDance)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(chkSing))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(radioMale)
-                                .addGap(45, 45, 45)
-                                .addComponent(radioFemale))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(129, 129, 129)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(cmbCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addComponent(btnSubmit)))
-                .addContainerGap(183, Short.MAX_VALUE))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(62, 62, 62)
+                                                .addGroup(layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,
+                                                                false)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(chkDance)
+                                                                .addPreferredGap(
+                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                        Short.MAX_VALUE)
+                                                                .addComponent(chkSing))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(radioMale)
+                                                                .addGap(45, 45, 45)
+                                                                .addComponent(radioFemale))))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(146, 146, 146)
+                                                .addGroup(layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(jLabel2)
+                                                        .addComponent(jLabel1)))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(129, 129, 129)
+                                                .addComponent(jLabel3))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(115, 115, 115)
+                                                .addComponent(cmbCountry, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(125, 125, 125)
+                                                .addComponent(btnSubmit)))
+                                .addContainerGap(183, Short.MAX_VALUE)));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(radioMale)
-                    .addComponent(radioFemale))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chkDance)
-                    .addComponent(chkSing))
-                .addGap(26, 26, 26)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbCountry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(btnSubmit))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(44, 44, 44)
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(radioMale)
+                                        .addComponent(radioFemale))
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel2)
+                                .addGap(22, 22, 22)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(chkDance)
+                                        .addComponent(chkSing))
+                                .addGap(26, 26, 26)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbCountry, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32,
+                                        Short.MAX_VALUE)
+                                .addComponent(btnSubmit)));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-        
-        try{
-        conn=Myconnection.ConnectDB();
-        String sql="insert into demotable(Gender,Courses,Country)values(?,?,?)";
-        pst=conn.prepareStatement(sql);
-        if(radioMale.isSelected())
-        
-         {
-          gender="Male";  
-        }
-        if(radioFemale.isSelected())
-        {
-          gender="Female";  
-        }
-        pst.setString(1, gender);
-        
-        String course="";
-        if(chkDance.isSelected())
-        {
-            course=chkDance.getText()+" ";
-        }
-        if(chkSing.isSelected())
-        {
-            course=chkSing.getText()+" ";
-        }
-        pst.setString(2,course);
-        
-        
-        String countrys="";
-        countrys=cmbCountry.getSelectedItem().toString();
-        pst.setString(3,countrys); 
-        
-        pst.executeUpdate();
-        JOptionPane.showMessageDialog(null, "INSERTED");
-        
-        
-        
-}
-catch(Exception e)
-{
-    System.out.println(e.getMessage());
-        
-        
-             }
-    }//GEN-LAST:event_btnSubmitActionPerformed
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSubmitActionPerformed
+        try {
+            // Use Myconnection class to connect to the database
+            conn = Myconnection.ConnectDB(); // Ensure Myconnection is correct
 
-   
-     
+            // SQL query to insert data into the demotable
+            String sql = "INSERT INTO demotable (Gender, Courses, Country) VALUES (?, ?, ?)";
+            pst = conn.prepareStatement(sql);
+
+            // Set gender based on selected radio button
+            if (radioMale.isSelected()) {
+                gender = "Male";
+            } else if (radioFemale.isSelected()) {
+                gender = "Female";
+            }
+            pst.setString(1, gender);
+
+            // Set courses based on selected checkboxes
+            String course = "";
+            if (chkDance.isSelected()) {
+                course += chkDance.getText() + " ";
+            }
+            if (chkSing.isSelected()) {
+                course += chkSing.getText() + " ";
+            }
+            pst.setString(2, course.trim());
+
+            // Set country from combo box
+            String country = cmbCountry.getSelectedItem().toString();
+            pst.setString(3, country);
+
+            // Execute the update (insert the data)
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Inserted successfully!");
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            // Close the resources after use
+            try {
+                if (pst != null)
+                    pst.close();
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error closing resources: " + e.getMessage(), "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }// GEN-LAST:event_btnSubmitActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -178,16 +184,10 @@ catch(Exception e)
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DemoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DemoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DemoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+                | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(DemoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

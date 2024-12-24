@@ -1,179 +1,152 @@
-
 package homework;
 
-import java.awt.HeadlessException;
-import java.awt.event.KeyEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.*;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 public class LoginBox extends javax.swing.JFrame {
-    
-    Connection conn=null;
-    ResultSet rs=null;
-    PreparedStatement pst=null;
-   
+
+    // Connection and SQL variables
+    private Connection conn = null;
+    private ResultSet rs = null;
+    private PreparedStatement pst = null;
+
     public LoginBox() {
-        initComponents();
+        initComponents(); // Initialize GUI components
     }
 
-    
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        // Initialize GUI components
+        jLabel1 = new javax.swing.JLabel("Username");
+        jLabel2 = new javax.swing.JLabel("Password");
+        btnLogin = new javax.swing.JButton("Login");
+        btnCancel = new javax.swing.JButton("Cancel");
+        btnRegister = new javax.swing.JButton("Register");
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        btnLogin = new javax.swing.JButton();
-        btnCancel = new javax.swing.JButton();
         txtusername = new javax.swing.JTextField();
-        txtpassword = new javax.swing.JTextField();
-        btnRegister = new javax.swing.JButton();
+        txtpassword = new javax.swing.JPasswordField();
 
+        // Set window properties
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Username");
-
-        jLabel2.setText("Password");
-
-        btnLogin.setText("Login");
-        btnLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginActionPerformed(evt);
+        // Button actions
+        btnLogin.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                handleLogin(); // Handle login when clicked
             }
         });
 
-        btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                System.exit(0); // Close application on cancel
+            }
+        });
 
-        btnRegister.setText("Register");
-
+        // Layout setup
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnLogin)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCancel)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnRegister)
-                        .addContainerGap(93, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtusername, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-                            .addComponent(txtpassword))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(55, 55, 55)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(btnLogin)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(btnCancel)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(btnRegister))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel1)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(txtusername, javax.swing.GroupLayout.PREFERRED_SIZE, 120,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel2)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 120,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(55, Short.MAX_VALUE)));
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtusername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(63, 63, 63)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLogin)
-                    .addComponent(btnCancel)
-                    .addComponent(btnRegister))
-                .addContainerGap(73, Short.MAX_VALUE))
-        );
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel1)
+                                        .addComponent(txtusername, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(20, 20, 20)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel2)
+                                        .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(40, 40, 40)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(btnLogin)
+                                        .addComponent(btnCancel)
+                                        .addComponent(btnRegister))
+                                .addContainerGap(50, Short.MAX_VALUE)));
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+        pack(); // Pack components into the window
+    }
 
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        
-        if(txtusername.equals(" "))
-        {
-        
-        JOptionPane.showMessageDialog(this, "Please enter username", "Error",JOptionPane.ERROR_MESSAGE);
-        return;
-        
+    // Handle login process
+    private void handleLogin() {
+        // Check if username or password is empty
+        if (txtusername.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter username", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-        
-        if(txtpassword.equals(" "))
-        {
-        
-        JOptionPane.showMessageDialog(this, "Please enter valid password", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-        
-        }
-        
-        conn=MyConnection.ConnectDB();
-        String sql="select * from tbregister where username= '" + txtusername.getText() + "' and password ='"+txtpassword.getText()+"'";
-         try
-      {
-          pst=conn.prepareStatement(sql);
-          rs= pst.executeQuery();
-          if (rs.next()){
-             this.hide();
-            TeacherForm t=new TeacherForm();
-            t.setVisible(true);
-          }
-          else{
-              
-            JOptionPane.showMessageDialog(null, "Login Failed..Try again !","Access denied",JOptionPane.ERROR_MESSAGE);
-          }
-      }catch(SQLException | HeadlessException e){
-         JOptionPane.showMessageDialog(null, e); 
-          
-    }      
-    }                                        
 
+        if (txtpassword.getPassword().length == 0) {
+            JOptionPane.showMessageDialog(this, "Please enter password", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-    }//GEN-LAST:event_btnLoginActionPerformed
 
-    
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+        // Connect to the database
+        conn = MyConnection.ConnectDB();
+
+        if (conn != null) {
+            // Prepare SQL query
+            String sql = "SELECT * FROM tbregister WHERE username = ? AND password = ?";
+            try {
+                pst = conn.prepareStatement(sql);
+                pst.setString(1, txtusername.getText());
+                pst.setString(2, new String(txtpassword.getPassword())); // Convert password to string
+                rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    this.setVisible(false); // Close login window
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "Login failed. Try again.", "Access Denied",
+                            JOptionPane.ERROR_MESSAGE);
                 }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(this, "Database error: " + e.getMessage(), "Error",
+                        JOptionPane.ERROR_MESSAGE);
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginBox.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginBox.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginBox.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginBox.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } else {
+            JOptionPane.showMessageDialog(this, "Connection failed. Please try again.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
-        //</editor-fold>
+    }
 
-        /* Create and display the form */
+    // Main method to run the application
+    public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginBox().setVisible(true);
+                new LoginBox().setVisible(true); // Show login form
             }
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancel;
-    private javax.swing.JButton btnLogin;
-    private javax.swing.JButton btnRegister;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField txtpassword;
+    // Declare UI components
+    private javax.swing.JButton btnLogin, btnCancel, btnRegister;
+    private javax.swing.JLabel jLabel1, jLabel2;
     private javax.swing.JTextField txtusername;
-    // End of variables declaration//GEN-END:variables
+    private javax.swing.JPasswordField txtpassword;
 }
